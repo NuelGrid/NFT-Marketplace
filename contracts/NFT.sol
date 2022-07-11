@@ -10,6 +10,7 @@ contract NFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
     address contractAddress;
+    event makeToken( uint id );
 
     constructor (address marketplaceAddress) ERC721("IfeMoney", "IM") {
         contractAddress = marketplaceAddress;
@@ -21,7 +22,7 @@ contract NFT is ERC721URIStorage {
         
         // set a token id for the token to be minted
         _tokenIds.increment();
-        uint newItemId = _tokenIds.current();
+        uint256 newItemId = _tokenIds.current();
         
         // minting new tokens
         _mint( msg.sender, newItemId );
@@ -29,7 +30,7 @@ contract NFT is ERC721URIStorage {
         _setTokenURI(newItemId, tokenURI);
         // grant permission to marketplace
         setApprovalForAll(contractAddress, true);
-
+        emit makeToken(newItemId);
         // returns tokenId
         return newItemId;
     }

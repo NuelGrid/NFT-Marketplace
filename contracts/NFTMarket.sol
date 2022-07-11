@@ -94,7 +94,7 @@ contract NFTMarket is ReentrancyGuard {
         _itemsSold.increment(); //increment the total number of items sold on the platform
         payable(owner).transfer(listingPrice); // pay owner of the contract the actual listing price
     }
-
+ 
     /// @notice total number of items unsold on our platform
     function  fetchMarketItems() public view returns (MarketItem[] memory) {
         // total number of items created
@@ -163,7 +163,4 @@ contract NFTMarket is ReentrancyGuard {
     }
 }
 
-// other functions
-// total amount made by user selling NFT;
-// total amount used in buying NFT by as user
  
